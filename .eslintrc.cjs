@@ -58,6 +58,7 @@ module.exports = {
         singleline: { delimiter: 'semi', requireLast: true },
       },
     ],
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/consistent-type-assertions': [
       'error',
       { assertionStyle: 'as' },
@@ -87,6 +88,7 @@ module.exports = {
       { 'ts-ignore': 'allow-with-description', minimumDescriptionLength: 10 },
     ],
     'react/no-unused-prop-types': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'react/default-props-match-prop-types': 'off',
     'no-use-before-define': 'off',
     'no-shadow': 'off',
