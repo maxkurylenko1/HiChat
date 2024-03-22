@@ -1,4 +1,4 @@
-import Navigator from 'navigation/Navigator';
+import Navigator from './navigation/Navigator';
 
 const App = () => (
   <Navigator />

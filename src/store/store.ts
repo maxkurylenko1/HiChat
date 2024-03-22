@@ -1,6 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import SignInSlice from './reducers/SignInSlice';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  SignInSlice,
+});
 
 // const appReducer = (state: any, action: UnknownAction) => {
 //   if (action.type === 'RESET') {
