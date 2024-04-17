@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { FC } from 'react';
 import { Spin } from 'antd';
+import { EPageRoutes } from '../types/enums/EPageRoutes';
 import { useAppSelector } from '../hooks/redux';
-import { pageRoutes } from '../types/constants/pageRoutes';
 import isTokenExpired from '../utils/isTokenExpired';
 
 const stylesForSpin = {
@@ -33,7 +33,7 @@ const ProtectedRoute:FC<IProtectedRouteProps> = ({ children }) => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to={pageRoutes.SIGN_IN_PAGE_ROUTE} />;
+    return <Navigate to={EPageRoutes.SIGN_IN_PAGE_ROUTE} />;
   }
 
   return children;

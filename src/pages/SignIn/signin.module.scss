@@ -1,0 +1,158 @@
+.signIn {
+  background-color: #fff;
+  overflow-x: hidden;
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  max-width: 1920px;
+  padding: 0 5px;
+  margin: 0 auto;
+
+  @media (max-width: 500px) {
+    width: 100vw;
+    margin: 0;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  @media screen and (max-width: 1023px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.leftside {
+  width: 50%;
+  padding-left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  @media screen and (max-width: 1023px) {
+    padding-left: 0;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 25px;
+  }
+}
+
+.rightside {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 834px) {
+    flex-direction: column;
+  }
+}
+
+.arrowIcon {
+  box-sizing: border-box;
+  width: 20px;
+  display: flex;
+  height: 100%;
+  align-self: end;
+}
+
+.submitButton {
+  margin-top: 20px;
+  height: 55px;
+  width: 150px;
+  background-color: rgb(183, 190, 255);
+  display: flex;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: space-evenly;
+
+  &:hover {
+    // background-color: #131420;
+    background-color: rgba(183, 190, 255, 0.5) !important;
+
+  }
+}
+
+.inputContainer {
+  width: 400px;
+  margin-bottom: 30px;
+
+  @media (max-width: 500px) {
+    width: 300px;
+  }
+}
+
+.buttonText {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 60px;
+
+  @media screen and (max-width: 1023px) {
+    margin-bottom: 40px;
+  }
+}
+
+.signInImg {
+  width: 720px;
+
+  @media (max-width: 1440px) {
+    width: 620px;
+    height: 600px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    width: 500px;
+    height: 400px;
+  }
+
+  @media (max-width: 500px) {
+    width: 400px;
+    height: 300px;
+  }
+}
+
+.input {
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+
+.errorTextContainer {
+  position: relative;
+  margin-top: 5px;
+}
+
+.errorText {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: red;
+  font-size: 12px;
+}
