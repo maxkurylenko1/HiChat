@@ -18,11 +18,20 @@
 .content {
   display: flex;
   flex-direction: row;
+  height: 100vh;
   justify-content: center;
+  align-items: center;
 
   @media screen and (max-width: 1023px) {
     flex-direction: column-reverse;
   }
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .leftside {
@@ -43,19 +52,45 @@
 }
 
 .rightside {
-  width: 50%;
+  max-width: 50%;
   display: flex;
   justify-content: center;
+  padding: 10px;
 
   @media screen and (max-width: 1023px) {
-    width: 100%;
+    max-width: 600px;
+    max-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
   }
 
   @media (max-width: 834px) {
+    max-height: 400px;
     flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  @media (max-width: 640px) {
+    max-height: 300px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  @media (max-width: 500px) {
+    max-height: 270px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
   }
 }
 
@@ -68,20 +103,28 @@
 }
 
 .submitButton {
-  margin-top: 20px;
+  margin: 20px 0;
   height: 55px;
-  width: 150px;
-  background-color: rgb(183, 190, 255);
+  width: 180px;
+  background-color: rgba(21, 49, 90, 1);
   display: flex;
   border-radius: 20px;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-evenly !important;
 
   &:hover {
     // background-color: #131420;
-    background-color: rgba(183, 190, 255, 0.5) !important;
+    background-color: rgba(21, 49, 90, 0.5) !important;
 
   }
+}
+
+.lightText {
+  color: rgba(144, 144, 144, 1);
+}
+
+.link {
+  text-decoration: underline;
 }
 
 .inputContainer {
@@ -100,48 +143,27 @@
   line-height: 21px;
   letter-spacing: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: #000;
+  color: #fff;
 }
 
 .title {
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 72px;
-  letter-spacing: 0em;
   text-align: left;
-  margin-bottom: 60px;
+  color: rgba(49, 32, 112, 1);
+
 
   @media screen and (max-width: 1023px) {
     margin-bottom: 40px;
   }
 }
 
-.signInImg {
-  width: 720px;
-
-  @media (max-width: 1440px) {
-    width: 620px;
-    height: 600px;
-  }
-
-  @media screen and (max-width: 1023px) {
-    width: 500px;
-    height: 400px;
-  }
-
-  @media (max-width: 500px) {
-    width: 400px;
-    height: 300px;
-  }
-}
-
 .input {
-  height: 40px;
+  height: 50px;
   margin-top: 20px;
   border-radius: 10px;
-  padding: 10px 16px;
+  padding: 16px 20px;
 }
 
 .errorTextContainer {
@@ -154,5 +176,5 @@
   top: 0;
   left: 0;
   color: red;
-  font-size: 12px;
+  font-size: 13px;
 }

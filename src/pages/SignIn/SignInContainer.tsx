@@ -1,9 +1,9 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { ISignFormCredentials } from 'types/interfaces/ISignFormCredentials';
+import { SignInSchema } from '../../utils/Schemas/signSchema';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import useSetPageTitle from '../../hooks/useSetPageTitle';
-import { SignInSchema } from './Schemas/signin';
 import SignIn from './SignIn';
 
 export const initialStateSignInForm:ISignFormCredentials = {

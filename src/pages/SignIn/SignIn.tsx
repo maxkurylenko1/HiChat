@@ -1,7 +1,8 @@
 import { ChangeEvent, FC, FormEvent } from 'react';
-import { Button, Input } from 'antd';
+import { Button, Input, Image } from 'antd';
 import { FormikErrors } from 'formik';
 import { ISignFormCredentials } from 'types/interfaces/ISignFormCredentials';
+import { Link } from 'react-router-dom';
 import WhiteArrowSVG from '../../assets/svg/WhiteArrow/WhiteArrowSVG';
 import SignInSVG from '../../assets/svg/SignIn/SignInSVG';
 import styles from './signin.module.scss';
@@ -19,7 +20,11 @@ const SignIn:FC<SignInProps> = ({ handleSubmit, handleChange, signInValues, sign
     <div className={styles.container}>
       <div className={styles.content}>
         <form className={styles.leftside} onSubmit={handleSubmit}>
-          <p className={styles.title}>Sign In</p>
+          <div className={styles.titleContainer}>
+            <p className={styles.title}>
+              Sign in to your account
+            </p>
+          </div>
           <div className={styles.inputContainer}>
             <span>Username</span>
             <Input
@@ -58,9 +63,11 @@ const SignIn:FC<SignInProps> = ({ handleSubmit, handleChange, signInValues, sign
               <WhiteArrowSVG />
             </div>
           </Button>
+          <span className={styles.lightText}>Don’t have an account?</span>
+          <Link to="/sign-up" className={styles.link}>Sign up</Link>
         </form>
         <div className={styles.rightside}>
-          <SignInSVG className={styles.signInImg} />
+          <SignInSVG />
         </div>
       </div>
     </div>
