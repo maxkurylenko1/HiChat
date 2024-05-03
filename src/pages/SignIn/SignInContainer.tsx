@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { ISignFormCredentials } from 'types/interfaces/ISignFormCredentials';
+import { signIn } from '../../store/actions/signActions';
 import { SignInSchema } from '../../utils/Schemas/signSchema';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import useSetPageTitle from '../../hooks/useSetPageTitle';
@@ -23,21 +24,8 @@ const SignInContainer = () => {
     initialValues: initialStateSignInForm,
     validationSchema: SignInSchema,
     validateOnChange: false,
-    onSubmit: async (values:ISignFormCredentials, { setSubmitting }):Promise<void> => {
-      // const prevLoc = location?.state?.from;
-      // const status = await dispatch(setLogin(values, '/api/Users/Login'));
-
-      // if (status === 200 && !lastPage) {
-      //   if (prevLoc?.pathname) {
-      //     navigate(`${prevLoc.pathname}${prevLoc?.search}`);
-      //   } else {
-      //     navigate(EPageRoute.DASHBOARD_PAGE_ROUTE);
-      //   }
-      // } else if (status === 200 && lastPage) {
-      //   navigate(lastPage);
-      // } else {
-      //   setSubmitting(true);
-      // }
+    onSubmit: async (values:ISignFormCredentials):Promise<void> => {
+      dispatch(signIn(values));
     },
   });
 

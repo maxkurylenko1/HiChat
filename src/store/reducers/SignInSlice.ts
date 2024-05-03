@@ -8,7 +8,7 @@ interface ISignInState {
 
 const initialState: ISignInState = {
   data: {
-    token: '',
+    accessToken: '',
     name: '',
     photo: '',
     id: '',

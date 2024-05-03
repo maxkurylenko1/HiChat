@@ -1,5 +1,5 @@
 export interface ISignedInUser {
-    token: string;
+    accessToken: string;
     name: string;
     photo: string;
     id: string;
