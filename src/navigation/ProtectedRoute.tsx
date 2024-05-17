@@ -17,10 +17,16 @@ interface IProtectedRouteProps {
 }
 
 const ProtectedRoute:FC<IProtectedRouteProps> = ({ children }) => {
-  const { data, loading } = useAppSelector((state) => state.SignInSlice);
+  const { loading } = useAppSelector((state) => state.SignInSlice);
+  const accessToken = window.localStorage.getItem('token');
 
-  const { token } = data;
-  const isAuthenticated = token && !isTokenExpired(token);
+  if (!accessToken) {
+    return <Navigate to={EPageRoutes.SIGN_IN_PAGE_ROUTE} />;
+  }
+
+  if (isTokenExpired(accessToken)) {
+    return <Navigate to={EPageRoutes.SIGN_IN_PAGE_ROUTE} />;
+  }
 
   if (loading) {
     return (
@@ -30,10 +36,6 @@ const ProtectedRoute:FC<IProtectedRouteProps> = ({ children }) => {
         <Spin spinning={loading} size="large" />
       </div>
     );
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate to={EPageRoutes.SIGN_IN_PAGE_ROUTE} />;
   }
 
   return children;

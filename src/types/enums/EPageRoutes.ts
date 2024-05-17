@@ -1,5 +1,8 @@
 export enum EPageRoutes {
-    ROOT_PAGE_ROUTE= '/',
+  ROOT_PAGE_ROUTE= '/',
+
+  // About
+  ABOUT_PAGE_ROUTE='/about',
 
   // Not found
   NOT_FOUND_PAGE_ROUTE= '/404',

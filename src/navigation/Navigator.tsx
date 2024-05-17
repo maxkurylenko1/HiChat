@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import About from '../pages/About/About';
 import { EPageRoutes } from '../types/enums/EPageRoutes';
 import ProtectedRoute from './ProtectedRoute';
 import RootContainer from '../pages/Root/RootContainer';
@@ -15,7 +16,15 @@ const Navigator = () => (
           <ProtectedRoute>
             <RootContainer />
           </ProtectedRoute>
-    )}
+        )}
+      />
+      <Route
+        path={EPageRoutes.ABOUT_PAGE_ROUTE}
+        element={(
+          <ProtectedRoute>
+            <About />
+          </ProtectedRoute>
+        )}
       />
       <Route path={EPageRoutes.SIGN_IN_PAGE_ROUTE} element={<SignInContainer />} />
       <Route path={EPageRoutes.SIGN_UP_PAGE_ROUTE} element={<SignUpContainer />} />
