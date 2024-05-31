@@ -1,5 +1,6 @@
 import { AppDispatch } from 'store/store';
 import { ISignFormCredentials } from 'types/interfaces/ISignFormCredentials';
+import parseJwt from '../../utils/parseJwt';
 import { ISignInResponse } from '../../types/interfaces/ISignInResponse';
 import requestToApi from '../../utils/requestToApi';
 import { setSignInData, setSignInLoading } from '../reducers/SignInSlice';
@@ -18,6 +19,7 @@ export const signIn = (credentials: ISignFormCredentials) => async (dispatch: Ap
       },
     });
 
+    if (data?.status === 200) dispatch(setSignInData({ name: parseJwt(data?.data?.accessToken).name }));
     dispatch(setSignInLoading(false));
 
     return { status: data?.status, token: data?.data?.accessToken };

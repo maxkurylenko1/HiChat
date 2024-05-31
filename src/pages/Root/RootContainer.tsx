@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
 import { getUsers } from '../../store/actions/getUsers';
+import logout from '../../api/logout';
 import Root from './Root';
 
 const RootContainer = () => {
@@ -9,10 +10,17 @@ const RootContainer = () => {
 
   const click = () => {
     dispatch(getUsers());
-    // navigate('/about');
+    navigate('/about');
   };
 
-  return <Root click={click} />;
+  const logoutHandler = async () => {
+    const status = await logout();
+
+    window.localStorage.clear();
+    navigate('/sign-in');
+  };
+
+  return <Root click={click} logout={logoutHandler} />;
 };
 
 export default RootContainer;

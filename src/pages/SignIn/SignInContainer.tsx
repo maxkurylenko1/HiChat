@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { ISignFormCredentials } from 'types/interfaces/ISignFormCredentials';
 import { useEffect } from 'react';
+import { setIntervalToken } from '../../store/reducers/SignInSlice';
 import refreshToken from '../../api/refreshToken';
 import { signIn } from '../../store/actions/signIn';
 import { SignInSchema } from '../../utils/Schemas/signSchema';
@@ -15,7 +16,7 @@ export const initialStateSignInForm:ISignFormCredentials = {
 };
 
 const SignInContainer = () => {
-  const { loading } = useAppSelector((state) => state.SignInSlice);
+  const { loading, intervalToken } = useAppSelector((state) => state.SignInSlice);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -29,13 +30,15 @@ const SignInContainer = () => {
       const signInData = await dispatch(signIn(values));
 
       if (signInData?.status === 200) {
-        setInterval(() => {
+        const newIntervalToken = setInterval(() => {
           refreshToken().then((res) => {
             if (res?.status === 200) {
               window.localStorage.setItem('token', res.token);
             }
           });
         }, 55000);
+
+        dispatch(setIntervalToken(newIntervalToken));
 
         window.localStorage.setItem('token', signInData.token);
         navigate('/');
@@ -45,6 +48,7 @@ const SignInContainer = () => {
 
   useEffect(() => {
     window.localStorage.clear();
+    if (intervalToken !== null) clearInterval(intervalToken);
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, FormEvent } from 'react';
 import { Button, Input } from 'antd';
 import { Link } from 'react-router-dom';
-import { ISignFormCredentials } from 'types/interfaces/ISignFormCredentials';
+import { ISignUpFormCredentials } from 'types/interfaces/ISignFormCredentials';
 import { FormikErrors } from 'formik';
 import WhiteArrowSVG from '../../assets/svg/WhiteArrow/WhiteArrowSVG';
 import SignUpSVG from '../../assets/svg/Signup/SignUpSVG';
@@ -10,8 +10,8 @@ import styles from './signup.module.scss';
 interface SignUpProps {
     handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    signInValues: ISignFormCredentials;
-    signInErrors: FormikErrors<ISignFormCredentials>;
+    signInValues: ISignUpFormCredentials;
+    signInErrors: FormikErrors<ISignUpFormCredentials>;
     loading: boolean;
   }
 
@@ -60,16 +60,16 @@ const SignUp:FC<SignUpProps> = ({ handleSubmit, handleChange, signInErrors, sign
             <span className={styles.text}>Confirm your password</span>
             <Input.Password
               type="password"
-              name="confirmPassword"
+              name="passwordConfirmation"
               maxLength={52}
               visibilityToggle={false}
               className={styles.input}
               onChange={handleChange}
-              value={signInValues.password}
+              value={signInValues.passwordConfirmation}
             />
             <div className={styles.errorTextContainer}>
               <span className={styles.errorText}>
-                {signInErrors.password}
+                {signInErrors.passwordConfirmation}
               </span>
             </div>
           </div>

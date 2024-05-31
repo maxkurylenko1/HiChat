@@ -1,7 +1,5 @@
-import axios, { Axios, AxiosInstance } from 'axios';
-import { EPageRoutes } from 'types/enums/EPageRoutes';
+import axios, { AxiosInstance } from 'axios';
 import { checkErrorMessage } from '../utils/checkErrorMessage';
-import refreshToken from './refreshToken';
 import { OpenNotification } from '../utils/OpenNotification';
 
 const baseURL = 'http://localhost:3000';
@@ -11,7 +9,17 @@ const instance: AxiosInstance = axios.create({
 });
 
 instance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    if (response.status === 201) {
+      OpenNotification({
+        title: 'Success',
+        type: 'success',
+        text: 'User created, please log in.',
+      });
+    }
+
+    return response;
+  },
   (error): void => {
     if (error.code === 'ERR_CANCELED') return;
     if (!error?.response?.status) {
@@ -38,7 +46,7 @@ instance.interceptors.response.use(
       });
     }
     if (error.response.status === 401) {
-      localStorage.clear();
+      window.localStorage.clear();
       OpenNotification({
         title: 'Warning',
         type: 'warning',
@@ -46,6 +54,7 @@ instance.interceptors.response.use(
       });
     }
     if (error.response.status === 403) {
+      window.localStorage.clear();
       OpenNotification({
         title: 'Warning',
         type: 'warning',

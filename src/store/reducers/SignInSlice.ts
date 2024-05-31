@@ -3,16 +3,16 @@ import { ISignedInUser } from 'types/interfaces/ISignedInUser';
 
 interface ISignInState {
     data: ISignedInUser;
+    intervalToken: NodeJS.Timeout | null;
     loading: boolean;
 }
 
 const initialState: ISignInState = {
   data: {
-    accessToken: '',
     name: '',
     photo: '',
-    id: '',
   },
+  intervalToken: null,
   loading: false,
 };
 
@@ -26,6 +26,9 @@ export const SignInSlice = createSlice({
     setSignInData(state: ISignInState, action: PayloadAction<ISignedInUser>): void {
       state.data = action.payload;
     },
+    setIntervalToken(state: ISignInState, action: PayloadAction<NodeJS.Timeout | null>): void {
+      state.intervalToken = action.payload;
+    },
     clearState(state: ISignInState): void {
       state.data = initialState.data;
       state.loading = false;
@@ -33,5 +36,5 @@ export const SignInSlice = createSlice({
   },
 });
 
-export const { setSignInData, setSignInLoading, clearState } = SignInSlice.actions;
+export const { setSignInData, setSignInLoading, clearState, setIntervalToken } = SignInSlice.actions;
 export default SignInSlice.reducer;

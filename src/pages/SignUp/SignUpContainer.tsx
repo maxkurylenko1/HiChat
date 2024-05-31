@@ -1,43 +1,36 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { ISignFormCredentials } from 'types/interfaces/ISignFormCredentials';
+import signUp from '../../store/actions/signUp';
+import { ISignUpFormCredentials } from '../../types/interfaces/ISignFormCredentials';
+import { EPageRoutes } from '../../types/enums/EPageRoutes';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import useSetPageTitle from '../../hooks/useSetPageTitle';
 import SignUp from './SignUp';
-import { SignInSchema } from '../../utils/Schemas/signSchema';
+import { SignUpSchema } from '../../utils/Schemas/signSchema';
 
-export const initialStateSignInForm:ISignFormCredentials = {
+export const initialStateSignInForm:ISignUpFormCredentials = {
   username: '',
   password: '',
+  passwordConfirmation: '',
 };
 
 const SignUpContainer = () => {
   const { loading } = useAppSelector((state) => state.SignInSlice);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   useSetPageTitle('Sign up');
 
   const formik = useFormik({
     initialValues: initialStateSignInForm,
-    validationSchema: SignInSchema,
+    validationSchema: SignUpSchema,
     validateOnChange: false,
-    onSubmit: async (values:ISignFormCredentials, { setSubmitting }):Promise<void> => {
-      // const prevLoc = location?.state?.from;
-      // const status = await dispatch(setLogin(values, '/api/Users/Login'));
+    onSubmit: async (values:ISignUpFormCredentials):Promise<void> => {
+      const status = await dispatch(signUp({ username: values.username, password: values.password }));
 
-      // if (status === 200 && !lastPage) {
-      //   if (prevLoc?.pathname) {
-      //     navigate(`${prevLoc.pathname}${prevLoc?.search}`);
-      //   } else {
-      //     navigate(EPageRoute.DASHBOARD_PAGE_ROUTE);
-      //   }
-      // } else if (status === 200 && lastPage) {
-      //   navigate(lastPage);
-      // } else {
-      //   setSubmitting(true);
-      // }
+      if (status && status === 201) {
+        navigate(EPageRoutes.SIGN_IN_PAGE_ROUTE);
+      }
     },
   });
 
